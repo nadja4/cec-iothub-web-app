@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<title>Chart.js Charts</title>
+	<style>
+		/* Ensure the canvas container is responsive */
+		#chart-container {
+			height: 100%;
+			width: 100%;
+			position: relative;
+		}
+		canvas {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="chart-container">
+		<canvas id="myChart"></canvas>
+	</div>
+
+	<script>
+		const labels = {{ labels | tojson }};
+		const data = {{ data | tojson }};
+
+		const chartData = {
+			labels: labels,
+			datasets: [{
+				label: 'Relative humidity',
+				backgroundColor: 'rgb(255, 99, 132)',
+				borderColor: 'rgb(255, 99, 132)',
+				data: data,
+			}]
+		};
+
+		const config = {
+			type: 'line',
+			data: chartData,
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				scales: {
+					x: {
+						title: {
+							display: true,
+							text: 'Time'
+						}
+					},
+					y: {
+						title: {
+							display: true,
+							text: 'Value'
+						}
+					}
+				}
+			}
+		};
+
+		const myChart = new Chart(
+			document.getElementById('myChart'),
+			config
+		);
+	</script>
+</body>
+</html>
