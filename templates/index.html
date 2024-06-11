@@ -3,7 +3,8 @@
 
 <head>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.1.1/dist/chartjs-plugin-zoom.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.min.js"></script>
 	<title>Vineyard Data</title>
 	<style>
 		/* Ensure the canvas container is responsive */
@@ -39,6 +40,9 @@
 			}]
 		};
 
+		const minDataValue = Math.min(...data);
+		const maxDataValue = Math.max(...data);
+
 		const config = {
 			type: 'line',
 			data: chartData,
@@ -56,6 +60,12 @@
 						title: {
 							display: true,
 							text: 'Value'
+						},
+						// Dynamische Festlegung der Skalierung der y-Achse
+						min: minDataValue - 10, // Mindestwert minus 10 (optional)
+						max: maxDataValue + 10, // Maximalwert plus 10 (optional)
+						ticks: {
+							stepSize: 10 // Schrittgröße
 						}
 					}
 				},
@@ -63,14 +73,14 @@
 					zoom: {
 						pan: {
 							enabled: true,
-							mode: 'x',
-							modifierKey: 'ctrl' // Optional: only pan when ctrl key is pressed
+							mode: 'x'
 						},
 						zoom: {
 							enabled: true,
 							mode: 'x',
 							drag: {
-								enabled: true
+								enabled: true,
+								modifierKey: 'ctrl' // Optional: nur pan bei gedrückter Strg-Taste
 							},
 							wheel: {
 								enabled: true
