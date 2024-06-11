@@ -12,8 +12,6 @@ app = Flask(__name__)
 # Get connection string from environment variables
 connection_string = os.environ["COSMOS_DB_CONNECTION_STRING"]
 
-print("Connection string", connection_string)
-
 # Initialize Cosmos client using the connection string
 client = CosmosClient.from_connection_string(connection_string)
 
