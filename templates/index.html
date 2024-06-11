@@ -3,7 +3,8 @@
 
 <head>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-	<title>Chart.js Charts</title>
+	<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.1.1/dist/chartjs-plugin-zoom.min.js"></script>
+	<title>Vineyard Data</title>
 	<style>
 		/* Ensure the canvas container is responsive */
 		#chart-container {
@@ -55,6 +56,28 @@
 						title: {
 							display: true,
 							text: 'Value'
+						}
+					}
+				},
+				plugins: {
+					zoom: {
+						pan: {
+							enabled: true,
+							mode: 'x',
+							modifierKey: 'ctrl' // Optional: only pan when ctrl key is pressed
+						},
+						zoom: {
+							enabled: true,
+							mode: 'x',
+							drag: {
+								enabled: true
+							},
+							wheel: {
+								enabled: true
+							},
+							pinch: {
+								enabled: true
+							}
 						}
 					}
 				}
