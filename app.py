@@ -26,16 +26,16 @@ def fetch_data_from_cosmos():
     query = 'SELECT * FROM c'
     items = list(container.query_items(query, enable_cross_partition_query=True))
     labels = [item['time'] for item in items]
-    data = [item['relative humidity'] for item in items]
-    return labels, data
+    rel_humidity = [item['relative humidity'] for item in items]
+    return labels, rel_humidity
 
 # Root endpoint 
 @app.route('/')
 def homepage():
-    labels, data = fetch_data_from_cosmos()
+    labels, rel_humidity = fetch_data_from_cosmos()
     return render_template(
         template_name_or_list='index.html',
-        data=data,
+        rel_humidity=rel_humidity,
         labels=labels,
     )
 

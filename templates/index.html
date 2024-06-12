@@ -28,20 +28,20 @@
 
 	<script>
 		const labels = {{ labels | tojson }};
-		const data = {{ data | tojson }};
+		const rel_humidity = {{ rel_humidity | tojson }};
 
 		const chartData = {
 			labels: labels,
 			datasets: [{
 				label: 'Relative humidity',
-				backgroundColor: 'rgb(255, 99, 132)',
-				borderColor: 'rgb(255, 99, 132)',
-				data: data,
+				backgroundColor: 'rgb(62, 121, 120)',
+				borderColor: 'rgb(62, 121, 120)',
+				data: rel_humidity
 			}]
 		};
 
-		const minDataValue = Math.min(...data);
-		const maxDataValue = Math.max(...data);
+		const minDataValue = Math.min(...rel_humidity);
+		const maxDataValue = Math.max(...rel_humidity);
 
 		const config = {
 			type: 'line',
@@ -64,7 +64,7 @@
 						// Dynamische Festlegung der Skalierung der y-Achse
 						min: minDataValue - 10, // Mindestwert minus 10 (optional)
 						max: maxDataValue + 10, // Maximalwert plus 10 (optional)
-						ticks: {
+							ticks: {
 							stepSize: 10 // Schrittgröße
 						}
 					}
@@ -80,7 +80,7 @@
 							mode: 'x',
 							drag: {
 								enabled: true,
-								modifierKey: 'ctrl' // Optional: nur pan bei gedrückter Strg-Taste
+								modifierKey: 'ctrl'
 							},
 							wheel: {
 								enabled: true
